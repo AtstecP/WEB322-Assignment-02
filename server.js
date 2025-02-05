@@ -12,12 +12,14 @@ require("dotenv").config()
 const projectData = require("./modules/projects");
 const express = require("express");
 const app = express(); 
+const path = require('path');
 const HTTP_PORT = process.env.PORT || 8080; 
+
+app.use(express.static('public'));
 
 projectData.initialize();
 app.get("/", (req, res) => {
-  res.send("Assignment 2: Viktor Makarov - 121659221");
-});
+  res.sendFile(path.join(__dirname, '/views/home.html'));});
 
 app.get("/solutions/projects", (req, res) => {
   projectData
@@ -42,5 +44,6 @@ app.get("/solutions/projects/sector-demo", (req, res) => {
     .then(data => res.send(data))
     .catch(err => res.status(500).send(err))
 })
+
 
 app.listen(HTTP_PORT, () => console.log(`server listening on: ${HTTP_PORT}`));
