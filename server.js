@@ -16,7 +16,6 @@ const path = require('path');
 const HTTP_PORT = process.env.PORT || 8080; 
 
 app.use(express.static('public'));
-console.log('Serving static files from:', path.join(__dirname, 'public'));
 projectData.initialize();
 
 app.get("/", (req, res) => {
