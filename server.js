@@ -55,4 +55,4 @@ app.use((req, res, next) => {
   res.status(404).sendFile(path.join(__dirname, '/views/404.html'));
 });
 
-app.listen(HTTP_PORT, () => console.log(`server listening on: ${HTTP_PORT}\n`+ `Serving static files from:`, path.join(__dirname, 'public')));
+app.listen(HTTP_PORT, () => console.log(`server listening on: ${HTTP_PORT}\n`));
