@@ -19,7 +19,6 @@ app.use(express.static('public'));
 projectData.initialize();
 
 app.get("/", (req, res) => {
-  console.log('Serving static files from:', path.join(__dirname, 'public'));
   res.sendFile(path.join(__dirname, '/views/home.html'));
 });
 
