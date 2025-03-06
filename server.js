@@ -27,12 +27,18 @@ projectData
     app.get("/", (req, res) => {
       projectData
         .getAllProjects()
-        .then((data) => res.render("home", { projects: data.slice(0, 3) }))
+        .then((data) => res.render("home", { 
+          projects: data.slice(0, 3),
+          route: "/"
+        }))
         .catch((err) => res.status(500).send(err));
     });
 
     app.get("/about", (req, res) => {
-      res.render("about", { developer: developerData });
+      res.render("about", { 
+        developer: developerData,
+        route: "/about"
+       });
     });
 
  
@@ -41,14 +47,21 @@ projectData
       if (sector) {
         projectData
           .getProjectsBySector(sector)
-          .then((data) => res.render("projects", {projects: data}))
+          .then((data) => res.render("projects", {
+            projects: data,
+            route: "/solutions/projects"
+          }))
           .catch((err) => res.status(404).render("404", {
             error: `No projects found for sector: ${sector}`,
+            route: "/solutions/projects"
           }));
       } else {
         projectData
           .getAllProjects()
-          .then((data) => res.render("projects", {projects: data}))
+          .then((data) => res.render("projects", {
+            projects: data,
+            route: "/solutions/projects"
+          }))
           .catch((err) => res.status(500).send(err));
       }
     });
@@ -58,15 +71,20 @@ projectData
       const { projectId } = req.params;
       projectData
         .getProjectById(projectId)
-        .then((data) => res.render("project", {project: data}))
+        .then((data) => res.render("project", {
+          project: data,
+          route: "/solutions/projects"
+        }))
         .catch((err) => res.status(404).render("404", {
           error: "Unable to find requested project.",
+          route: "/solutions/projects"
         }));
     });
 
     app.use((req, res, next) => {
       res.status(404).render("404", {
         error: "I'm sorry, we're unable to find what you're looking for.",
+        route: "/solutions/projects"
       });
     });
 

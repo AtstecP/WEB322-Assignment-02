@@ -10,7 +10,7 @@
 
 <body>
     <header>
-        <%- include('partials/navbar', { page: '/solutions/projects' }) %>
+        <%- include('partials/navbar', { page: route }) %>
     </header>
 
     <div class="container mx-auto">
@@ -45,7 +45,7 @@
                         </td>
 
                         <td>
-                            <a href="/solutions/projects?sector=<%= project.sector %>" class="btn mt-2 btn-primary btn-xs">
+                            <a href="/solutions/projects?sector=<%= project.sector %>" class="btn mt-2 btn-primary btn-xs px-4 py-2 min-h-0 h-auto flex items-center justify-center">
                                 <%= project.sector %>
                             </a>
                         </td>
