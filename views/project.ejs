@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/main.css">
+    <title>Climate Solutions</title>
+</head>
+
+<body>
+    <header>
+        <%- include('partials/navbar', { page: '/solutions/project' }) %>
+    </header>
+
+    <div class="container mx-auto">
+        <div class="hero bg-base-200 rounded-lg p-6">
+            <div class="hero-content text-center">
+                <div class="max-w-md">
+                    <h1 class="text-5xl font-bold">
+                        <%= project.title %>
+                    </h1>
+                    <p class="py-6">
+                        Below, you will find detailed information about the project: <%= project.title %>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+            <div>
+                <img class="w-full" src="<%= project.feature_img_url %>" alt="<%= project.title %>" />
+            </div>
+            <div class="prose">
+                <p>
+                    <%= project.intro_short %>
+                </p>
+                <br>
+                <span class="font-bold">Impact: </span>
+                <br>
+                <p>
+                    <%= project.impact %>
+                </p>
+                <br><br>
+                <span class="font-bold">More Information: </span>
+                <a href="<%= project.original_source_url %>" target="_blank">
+                    <%= project.original_source_url %>
+                </a>
+                <br><br>
+                <span id="quote"></span>
+                <br>
+                <br>
+                <a class="btn btn-primary btn-sm" href="#" onclick="history.back(); return false;">RETURN</a>
+                
+             
+                
+            </div>  
+        </div>
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            fetch('https://dummyjson.com/quotes/random')
+                .then(response => response.json())
+                .then(data => {
+                    const quote = data.quote;
+                    const author = data.author;
+                    document.getElementById('quote').innerHTML = `"${quote}"<br>- <em>${author}</em>`;
+                })
+                .catch(error => console.error('Error fetching quote:', error));
+        });
+    </script>
+</body>
+
+</html>
